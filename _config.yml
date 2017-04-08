@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: glhfstar's blog
+title: glhfstar 博客
 subtitle: 
 description:
 author: glhfstar
@@ -37,7 +37,7 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-highlight:
+highlight: 
   enable: true
   line_number: true
   auto_detect: false

@@ -1,5 +1,7 @@
 ---
 title: 利用xcode snippet 解决代码块重复敲写的问题
+date: 2016-03-20 19:28:15
+tags:
 ---
 
    **当你在写一个tableview时,一般都需要实现它的delegate和datasource时,你是为否有为如何快捷的将那几个常用的方法快速敲打出来而苦恼过,或者你会在别的代码块将那几个常用的方法复制粘贴过来,但是效率上来说其实也不高。是否有一种方法可以像代码提示那样只需几个关键字就能将这好几个的代理方法直接Tab键一按就洋洋洒洒洒落在你眼前呢?
@@ -13,7 +15,7 @@ title: 利用xcode snippet 解决代码块重复敲写的问题
   
 ![2.jpeg](http://upload-images.jianshu.io/upload_images/2185894-13e7a901489bc586.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### 设置相关说明:
+** 设置相关说明:**
 * Title：Code Snippets的标题；
 * Summary：Code Snippets的描述文字；
 * Platform：可以使用Code Snippets的平台
