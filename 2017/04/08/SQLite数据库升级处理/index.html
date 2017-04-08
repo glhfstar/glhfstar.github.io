@@ -87,22 +87,17 @@
 
 
 
-<meta name="description" content="当你在写一个tableview时,一般都需要实现它的delegate和datasource时,你是为否有为如何快捷的将那几个常用的方法快速敲打出来而苦恼过,或者你会在别的代码块将那几个常用的方法复制粘贴过来,但是效率上来说其实也不高。是否有一种方法可以像代码提示那样只需几个关键字就能将这好几个的代理方法直接Tab键一按就洋洋洒洒洒落在你眼前呢?   通过xcode snippet便可解决上面">
+<meta name="description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 ####1. 增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用xcode snippet 解决代码块重复敲写的问题">
-<meta property="og:url" content="http://yoursite.com/2017/04/08/利用xcode snippet 解决代码块重复敲写的问题/index.html">
+<meta property="og:title" content="SQLite数据库升级处理">
+<meta property="og:url" content="http://yoursite.com/2017/04/08/SQLite数据库升级处理/index.html">
 <meta property="og:site_name" content="glhfstar 博客">
-<meta property="og:description" content="当你在写一个tableview时,一般都需要实现它的delegate和datasource时,你是为否有为如何快捷的将那几个常用的方法快速敲打出来而苦恼过,或者你会在别的代码块将那几个常用的方法复制粘贴过来,但是效率上来说其实也不高。是否有一种方法可以像代码提示那样只需几个关键字就能将这好几个的代理方法直接Tab键一按就洋洋洒洒洒落在你眼前呢?   通过xcode snippet便可解决上面">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2185894-ee8743f5a8439f22.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2185894-13e7a901489bc586.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2185894-ffd3b2898d720abb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2185894-98fe5a0bbbe1afe9.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-04-07T11:48:31.000Z">
+<meta property="og:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 ####1. 增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库">
+<meta property="og:updated_time" content="2017-04-08T03:00:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用xcode snippet 解决代码块重复敲写的问题">
-<meta name="twitter:description" content="当你在写一个tableview时,一般都需要实现它的delegate和datasource时,你是为否有为如何快捷的将那几个常用的方法快速敲打出来而苦恼过,或者你会在别的代码块将那几个常用的方法复制粘贴过来,但是效率上来说其实也不高。是否有一种方法可以像代码提示那样只需几个关键字就能将这好几个的代理方法直接Tab键一按就洋洋洒洒洒落在你眼前呢?   通过xcode snippet便可解决上面">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2185894-ee8743f5a8439f22.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="SQLite数据库升级处理">
+<meta name="twitter:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 ####1. 增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库">
 
 
 
@@ -130,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/08/利用xcode snippet 解决代码块重复敲写的问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/08/SQLite数据库升级处理/"/>
 
 
 
 
 
-  <title> 利用xcode snippet 解决代码块重复敲写的问题 | glhfstar 博客 </title>
+  <title> SQLite数据库升级处理 | glhfstar 博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/利用xcode snippet 解决代码块重复敲写的问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/SQLite数据库升级处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glhfstar">
@@ -276,7 +271,7 @@
             
             
               
-                利用xcode snippet 解决代码块重复敲写的问题
+                SQLite数据库升级处理
               
             
           </h1>
@@ -327,24 +322,11 @@
       
 
       
-        <p>   <strong>当你在写一个tableview时,一般都需要实现它的delegate和datasource时,你是为否有为如何快捷的将那几个常用的方法快速敲打出来而苦恼过,或者你会在别的代码块将那几个常用的方法复制粘贴过来,但是效率上来说其实也不高。是否有一种方法可以像代码提示那样只需几个关键字就能将这好几个的代理方法直接Tab键一按就洋洋洒洒洒落在你眼前呢?<br>   通过xcode snippet便可解决上面提到的那个问题。xcode snippet是一个代码块重复使用管理的功能，通过创建一些可重用的代码块，并且在任何需要的地方很容易的就可以使用这些代码块。这样就可以节省很多输入操作的时间, 从而提高开发的效率。接下来我们就利用snippet 解决上述的问题。 </strong></p>
-<p>  <strong>首先, 创建需要重复使用的代码块。然后单击并按住代码块，等文本光标变为箭头光标。接着将代码块拖放到code snippet library中，然后松开鼠标。如下图所示</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2185894-ee8743f5a8439f22.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.jpeg"></p>
-<p>  <strong>此时会弹出一个编辑框，通过编辑框对代码块进行相关的设置，如下图所示。</strong><br>  <br><img src="http://upload-images.jianshu.io/upload_images/2185894-13e7a901489bc586.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.jpeg"></p>
-<p><strong> 设置相关说明:</strong></p>
-<ul>
-<li>Title：Code Snippets的标题；</li>
-<li>Summary：Code Snippets的描述文字；</li>
-<li>Platform：可以使用Code Snippets的平台</li>
-<li>Language：可以在哪些语言中使用该Code Snippets</li>
-<li>Completion Shortcut：Code Snippets的快捷方式，比如这里设置为 “fast tableview”, 当敲写这个关键字符串时就会出现该代码块的提示。</li>
-<li>Completion Scopes:可以在哪些文件中使用当前Code Snippets，比如全部位置，头文件中等，当然可以添加多个支持的位置。</li>
-<li>最后的一个大得空白区域是对Code Snippets的效果预览。</li>
-</ul>
-<p>  <strong>现在来试用一下刚刚创建的snippet！有两种方法。<br>第一种是在code snippet library中找到刚刚创建的snippet，然后用鼠标将其拖拽到代码编辑器中,然后松开鼠标就可以了。</strong></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2185894-ffd3b2898d720abb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.jpeg"></p>
-<p>  <strong>第二种方法是在代码编辑器里输入completion shortcut中设置的内容,这里是“fast tableview”。</strong><br>  <br><img src="http://upload-images.jianshu.io/upload_images/2185894-98fe5a0bbbe1afe9.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4.jpeg"></p>
-<p>  <strong>通过xcode snippet对经常使用的代码块进行管理，是不是发现顿时开发效率提高了很多呢。</strong></p>
+        <p><strong>在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。</strong><br><strong>接下来介绍下如何处理数据库结构变化所导致的问题。</strong></p>
+<p>####1. 增加字段<br>比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字段。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (![fmdb columnExists:<span class="string">@"new"</span> inTableWithName:<span class="string">@"app"</span>]) &#123;</div><div class="line">            <span class="built_in">NSString</span> *alertStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"alter table %@ add %@ varchar"</span>,<span class="string">@"app"</span>,<span class="string">@"new"</span>];</div><div class="line">            <span class="built_in">BOOL</span> isSucess = [fmdb executeUpdate:alertStr];</div><div class="line">            <span class="keyword">if</span> (isSucess) &#123;</div><div class="line"></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>####2.删除字段<br>由于SQLite 仅仅支持 ALTER TABLE 语句的一部分功能，我们可以用 ALTER TABLE 语句来更改一个表的名字，也可向表中增加一个字段（列），但是我们不能删除一个已经存在的字段，或者更改一个已经存在的字段的名称、数据类型、限定符等等。 </p>
+<p>个人觉得有以下两种处理方式：<br>第一种是不修改表的结构，如果只有少量字段不需要使用了，保留着影响也不大。<br>第二种是把原来的数据库表改名为其它，然后新建新的数据库表，接着把旧的数据库表数据重新导入到新的数据库表，最后删掉旧的数据库表。</p>
 
       
     </div>
@@ -381,18 +363,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/08/SQLite数据库升级处理/" rel="next" title="SQLite数据库升级处理">
-                <i class="fa fa-chevron-left"></i> SQLite数据库升级处理
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/08/block之变量的存取/" rel="prev" title="block之变量的存取">
-                block之变量的存取 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/08/利用xcode snippet 解决代码块重复敲写的问题/" rel="prev" title="利用xcode snippet 解决代码块重复敲写的问题">
+                利用xcode snippet 解决代码块重复敲写的问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
