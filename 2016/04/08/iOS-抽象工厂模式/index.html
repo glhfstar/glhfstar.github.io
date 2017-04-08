@@ -1,0 +1,634 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。iOS 类簇使用的便是抽象工厂的设计模式，像NSNum">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 抽象工厂模式">
+<meta property="og:url" content="http://yoursite.com/2016/04/08/iOS-抽象工厂模式/index.html">
+<meta property="og:site_name" content="glhfstar 博客">
+<meta property="og:description" content="抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。iOS 类簇使用的便是抽象工厂的设计模式，像NSNum">
+<meta property="og:updated_time" content="2017-04-08T03:06:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 抽象工厂模式">
+<meta name="twitter:description" content="抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。iOS 类簇使用的便是抽象工厂的设计模式，像NSNum">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/08/iOS-抽象工厂模式/"/>
+
+
+
+
+
+  <title> iOS 抽象工厂模式 | glhfstar 博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">glhfstar 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/08/iOS-抽象工厂模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="glhfstar">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="glhfstar 博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS 抽象工厂模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-08T21:04:25+08:00">
+                2016-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。客户端程序不需要知道（或关心）它从这些内部的工厂方法中获得对象的具体类型，因为客户端程序仅使用这些对象的通用接口。抽象工厂模式将一组对象的实现细节与他们的一般使用分离开来。<br>iOS 类簇使用的便是抽象工厂的设计模式，像NSNumber, NSDictionary.例如在NSNumber的初始化伪代码大概像这样：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">id</span>)initWithBool</div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> [[__NSCFBoolean alloc]init];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">id</span>)initWithLong</div><div class="line">&#123;</div><div class="line">	<span class="keyword">return</span> [[__NSCFNumber alloc]init];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在iOS 开发中，我们可以利用这种设计模式将若干抽象产品的接口与不同主题产品的具体实现分离开。这样就能在增加新的具体工厂的时候，不用修改引用抽象工厂的客户端代码。<br>下面用一个例子来实现抽象工厂的模式：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  KSStorage.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, DataType) &#123;</div><div class="line">    FileStorageDataType,</div><div class="line">    DatabaseStorageDataType,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">KSStorageProtocol</span> </span></div><div class="line"><span class="keyword">@required</span></div><div class="line">    -(<span class="keyword">void</span>)saveData;</div><div class="line">    -(<span class="keyword">id</span>)initWithData:(<span class="built_in">NSData</span> *)data;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">KSStorage</span> : <span class="title">NSObject</span> &lt;<span class="title">KSStorageProtocol</span>&gt;</span></div><div class="line">-(<span class="keyword">id</span>)initWithData:(<span class="built_in">NSData</span> *)data type:(DataType)dataType;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">//  KSStorage.m</div><div class="line"></div><div class="line">#import &quot;KSStorage.h&quot;</div><div class="line"></div><div class="line">@interface FileStorage : KSStorage</div><div class="line">@property (nonatomic,strong) NSURL  *storageURL;</div><div class="line">@property (nonatomic,strong) NSData *data;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@interface DatabaseStorage : KSStorage</div><div class="line">@property (nonatomic,strong) NSDictionary  *dbConnectionInformationDictionary;</div><div class="line">@property (nonatomic,strong) NSData *data;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation KSStorage</div><div class="line"></div><div class="line">-(id)initWithData:(NSData *)data type:(DataType)dataType&#123;</div><div class="line">    self = nil;</div><div class="line">    if (dataType == FileStorageDataType)&#123;</div><div class="line">        self = [[FileStorage alloc] initWithData:data];</div><div class="line">    &#125;</div><div class="line">    else if (dataType == DatabaseStorageDataType)&#123;</div><div class="line">        self = [[DatabaseStorage alloc] initWithData:data];</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)saveData&#123;</div><div class="line">    [NSException raise:NSInternalInconsistencyException</div><div class="line">                format:@&quot;You have not implemented %@ in %@&quot;, NSStringFromSelector(_cmd), NSStringFromClass([self class])];</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(id)initWithData:(NSData *)data&#123;</div><div class="line">    [NSException raise:NSInternalInconsistencyException</div><div class="line">                format:@&quot;You have not implemented %@ in %@&quot;, NSStringFromSelector(_cmd), NSStringFromClass([self class])];</div><div class="line">    return nil;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation FileStorage</div><div class="line"></div><div class="line">-(id)initWithData:(NSData *)data&#123;</div><div class="line">    self.data = data;</div><div class="line">    self.storageURL = [NSURL URLWithString:@&quot;file:///Users/debasisdas/Knowstack/SampleData.txt&quot;];</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)saveData&#123;</div><div class="line">    NSLog(@&quot;data is %@&quot;,self.data);</div><div class="line">    NSLog(@&quot;Now store it to stated URL %@&quot;,self.storageURL);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line">@implementation DatabaseStorage</div><div class="line"></div><div class="line">-(id)initWithData:(NSData *)data&#123;</div><div class="line">    self.data = data;</div><div class="line">    self.dbConnectionInformationDictionary = @&#123;@&quot;connection&quot;:@&quot;xyz.domain.com&quot;,@&quot;port&quot;:@&quot;8080&quot;,@&quot;password&quot;:@&quot;*******&quot;&#125;;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-(void)saveData</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;data is %@&quot;,self.data);</div><div class="line">    NSLog(@&quot;Now store it to stated URL %@&quot;,self.dbConnectionInformationDictionary);</div><div class="line"></div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>测试代码：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *sampleString = <span class="string">@"This is a sample string"</span>;</div><div class="line"><span class="built_in">NSData</span> *data = [sampleString dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line">KSStorage *storage1 = [[KSStorage alloc] initWithData:data type:FileStorageDataType];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"storage1 %@"</span>,storage1);</div><div class="line"><span class="keyword">if</span> ([storage1 respondsToSelector:<span class="keyword">@selector</span>(saveData)])&#123;</div><div class="line">    [storage1 saveData];</div><div class="line">&#125;</div><div class="line"></div><div class="line">KSStorage *storage2 = [[KSStorage alloc] initWithData:data type:DatabaseStorageDataType];</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"storage2 %@"</span>,storage2);</div><div class="line"><span class="keyword">if</span> ([storage2 respondsToSelector:<span class="keyword">@selector</span>(saveData)])&#123;</div><div class="line">    [storage2 saveData];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/02/SQLite数据库升级处理/" rel="prev" title="SQLite数据库升级处理">
+                SQLite数据库升级处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/icon.jpg"
+               alt="glhfstar" />
+          <p class="site-author-name" itemprop="name">glhfstar</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">glhfstar</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
