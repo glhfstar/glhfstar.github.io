@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 ###增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字">
+<meta name="description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字段。">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQLite数据库升级处理">
 <meta property="og:url" content="http://yoursite.com/2016/04/02/SQLite数据库升级处理/index.html">
 <meta property="og:site_name" content="glhfstar 博客">
-<meta property="og:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 ###增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字">
-<meta property="og:updated_time" content="2017-04-08T06:30:27.000Z">
+<meta property="og:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字段。">
+<meta property="og:updated_time" content="2017-04-08T06:32:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQLite数据库升级处理">
-<meta name="twitter:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 ###增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字">
+<meta name="twitter:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 增加字段比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字段。">
 
 
 
@@ -323,9 +323,9 @@
 
       
         <p><strong>在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。</strong><br><strong>接下来介绍下如何处理数据库结构变化所导致的问题。</strong></p>
-<p>###增加字段<br>比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字段。</p>
+<h3 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h3><p>比如在原有的版本上增加一个”new”字段.先判断当前的数据库表中是否已经包含”new”字段，如果没有则为当前数据库表插入字段。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (![fmdb columnExists:<span class="string">@"new"</span> inTableWithName:<span class="string">@"app"</span>]) &#123;</div><div class="line">            <span class="built_in">NSString</span> *alertStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"alter table %@ add %@ varchar"</span>,<span class="string">@"app"</span>,<span class="string">@"new"</span>];</div><div class="line">            <span class="built_in">BOOL</span> isSucess = [fmdb executeUpdate:alertStr];</div><div class="line">            <span class="keyword">if</span> (isSucess) &#123;</div><div class="line"></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<p>###删除字段<br>由于SQLite 仅仅支持 ALTER TABLE 语句的一部分功能，我们可以用 ALTER TABLE 语句来更改一个表的名字，也可向表中增加一个字段（列），但是我们不能删除一个已经存在的字段，或者更改一个已经存在的字段的名称、数据类型、限定符等等。 </p>
+<h3 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h3><p>由于SQLite 仅仅支持 ALTER TABLE 语句的一部分功能，我们可以用 ALTER TABLE 语句来更改一个表的名字，也可向表中增加一个字段（列），但是我们不能删除一个已经存在的字段，或者更改一个已经存在的字段的名称、数据类型、限定符等等。 </p>
 <p>个人觉得有以下两种处理方式：<br><strong>第一种是不修改表的结构，如果只有少量字段不需要使用了，保留着影响也不大。</strong><br><strong>第二种是把原来的数据库表改名为其它，然后新建新的数据库表，接着把旧的数据库表数据重新导入到新的数据库表，最后删掉旧的数据库表。</strong></p>
 
       
@@ -422,8 +422,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon.jpg"
@@ -467,6 +476,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加字段"><span class="nav-number">1.</span> <span class="nav-text">增加字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除字段"><span class="nav-number">2.</span> <span class="nav-text">删除字段</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
