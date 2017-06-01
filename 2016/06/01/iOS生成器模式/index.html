@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 增加字段比如在原有的版本上增加一个new字段.先判断当前的数据库表中是否已经包含new字段，如果没有则为当前数据库表插入字段。 1234">
+<meta name="description" content="生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。 有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。 我们们先来看个例子，假设你">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQLite数据库升级处理">
-<meta property="og:url" content="http://yoursite.com/2016/04/02/SQLite数据库升级处理/index.html">
+<meta property="og:title" content="iOS建造者模式">
+<meta property="og:url" content="http://yoursite.com/2016/06/01/iOS生成器模式/index.html">
 <meta property="og:site_name" content="glhfstar 博客">
-<meta property="og:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 增加字段比如在原有的版本上增加一个new字段.先判断当前的数据库表中是否已经包含new字段，如果没有则为当前数据库表插入字段。 1234">
-<meta property="og:updated_time" content="2017-04-08T06:35:00.000Z">
+<meta property="og:description" content="生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。 有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。 我们们先来看个例子，假设你">
+<meta property="og:updated_time" content="2017-06-01T06:01:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SQLite数据库升级处理">
-<meta name="twitter:description" content="在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。接下来介绍下如何处理数据库结构变化所导致的问题。 增加字段比如在原有的版本上增加一个new字段.先判断当前的数据库表中是否已经包含new字段，如果没有则为当前数据库表插入字段。 1234">
+<meta name="twitter:title" content="iOS建造者模式">
+<meta name="twitter:description" content="生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。 有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。 我们们先来看个例子，假设你">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/02/SQLite数据库升级处理/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/06/01/iOS生成器模式/"/>
 
 
 
 
 
-  <title> SQLite数据库升级处理 | glhfstar 博客 </title>
+  <title> iOS建造者模式 | glhfstar 博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/02/SQLite数据库升级处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/01/iOS生成器模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glhfstar">
@@ -271,7 +271,7 @@
             
             
               
-                SQLite数据库升级处理
+                iOS建造者模式
               
             
           </h1>
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-02T21:22:44+08:00">
-                2016-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-01T11:29:22+08:00">
+                2016-06-01
               </time>
             
 
@@ -322,11 +322,18 @@
       
 
       
-        <p><strong>在app开发过程中，如果本地存储采用了SQLite。那么当app有新的需求时需要更改本地数据库的结构，比如说增加新的字段或者删除原有的字段。此时，如果没有采取正确的措施，会导致升级后的app进行数据存储时发生异常。</strong><br><strong>接下来介绍下如何处理数据库结构变化所导致的问题。</strong></p>
-<h3 id="增加字段"><a href="#增加字段" class="headerlink" title="增加字段"></a>增加字段</h3><p>比如在原有的版本上增加一个<code>new</code>字段.先判断当前的数据库表中是否已经包含<code>new</code>字段，如果没有则为当前数据库表插入字段。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (![fmdb columnExists:<span class="string">@"new"</span> inTableWithName:<span class="string">@"app"</span>]) &#123;</div><div class="line">            <span class="built_in">NSString</span> *alertStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"alter table %@ add %@ varchar"</span>,<span class="string">@"app"</span>,<span class="string">@"new"</span>];</div><div class="line">            <span class="built_in">BOOL</span> isSucess = [fmdb executeUpdate:alertStr];</div><div class="line">            <span class="keyword">if</span> (isSucess) &#123;</div><div class="line"></div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<h3 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h3><p>由于SQLite 仅仅支持 <code>ALTER TABLE</code> 语句的一部分功能，我们可以用  <code>ALTER TABLE</code> 语句来更改一个表的名字，也可向表中增加一个字段（列），但是我们不能删除一个已经存在的字段，或者更改一个已经存在的字段的名称、数据类型、限定符等等。 </p>
-<p>个人觉得有以下两种处理方式：<br><strong>第一种是不修改表的结构，如果只有少量字段不需要使用了，保留着影响也不大。</strong><br><strong>第二种是把原来的数据库表改名为其它，然后新建新的数据库表，接着把旧的数据库表数据重新导入到新的数据库表，最后删掉旧的数据库表。</strong></p>
+        <p>生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。</p>
+<p>有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。</p>
+<p>我们们先来看个例子，假设你现在要买一辆车，提出以下一堆要求：红色、10万左右、国产、5座等等，代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Car *car = [[Car alloc] init];</div><div class="line">car.color = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">car.price = <span class="number">100000</span>;</div><div class="line">car.family = <span class="string">@"China"</span>;</div><div class="line">car.seatCount = <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<p>或者是这样：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Car *car = [Car alloc] initWithColor:[<span class="built_in">UIColor</span> whiteColor] price:<span class="number">100000</span> family:<span class="string">@"China"</span> seatCount:<span class="number">5</span> ....];</div></pre></td></tr></table></figure>
+<p>第一种方式可扩展性好些，但无法约束必须设置某些 property。第二种方式修正了这个问题，但扩展性也差了。<br>假如又有了新需求，要让客户可以选择汽车的驱动方式，。对于第一种，自然可以新增一个属性，但使用者很可能完全不知道新增了这么个属性。对于第二种，则只能再新建一个初始化方式，如 -[initWithColor: price:family:seatCount:actuate]。那如果又有新的需求，比如选择汽车的排量？或者可以选择车身结构等等。这两种方式都不能很好地处理需求的变更。<br>所以，当某个类的属性值很多时，我们可以考虑使用建造者模式Builder Pattern来让初始化过程清晰一些。代码大概是这样的：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Car *car = [Car  createWithBuilder:^(CarBuilder *builder)&#123;</div><div class="line">	builder.color = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">	builder.price = <span class="number">100000</span>;</div><div class="line">	builder.family = <span class="string">@"China"</span>;</div><div class="line">	builder.seatCount = <span class="number">5</span>;</div><div class="line">&#125;];</div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)createWithBuilder:(BuilderBlock)block &#123;</div><div class="line">	<span class="built_in">NSParameterAssert</span>(block);</div><div class="line">	CarBuilder *builder = [[CarBuilder alloc] init];</div><div class="line">	block(builder);</div><div class="line">	<span class="keyword">return</span> [builder build];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>build的实现方式如下代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (PFXiPhone6 *)build</div><div class="line">&#123;</div><div class="line">	<span class="comment">// 可以在这里对 property 做检查</span></div><div class="line">	<span class="built_in">NSAssert</span>(<span class="keyword">self</span>.price, <span class="string">@"请填写价格"</span>);</div><div class="line"></div><div class="line">	Car * car = [[Car alloc] init];</div><div class="line">	car.color = <span class="keyword">self</span>.color;</div><div class="line">	car.price = <span class="keyword">self</span>.price;</div><div class="line">	car.family = <span class="keyword">self</span>.family;</div><div class="line">	car.seatCount = <span class="keyword">self</span>.seatCount;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> car;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在FaceBook的开源动画框架POP中也有对builder pattern类似的应用：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POPAnimatableProperty *animatableProperty = [POPAnimatableProperty propertyWithName:<span class="string">@"property"</span> initializer:^(POPMutableAnimatableProperty *prop) &#123;</div><div class="line">    prop.writeBlock = ^(<span class="keyword">id</span> obj, <span class="keyword">const</span> <span class="built_in">CGFloat</span> values[]) &#123;</div><div class="line">    &#125;;</div><div class="line">    prop.readBlock = ^(<span class="keyword">id</span> obj, <span class="built_in">CGFloat</span> values[]) &#123;</div><div class="line">    &#125;;</div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
+<p>这里的 initializer 其实就是 builder。</p>
 
       
     </div>
@@ -363,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/08/iOS-抽象工厂模式/" rel="next" title="iOS 抽象工厂模式">
-                <i class="fa fa-chevron-left"></i> iOS 抽象工厂模式
+              <a href="/2016/10/31/dispatch-once死锁/" rel="next" title="dispatch_once死锁">
+                <i class="fa fa-chevron-left"></i> dispatch_once死锁
               </a>
             
           </div>
@@ -373,8 +380,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/20/利用xcode snippet 解决代码块重复敲写的问题/" rel="prev" title="利用xcode snippet 解决代码块重复敲写的问题">
-                利用xcode snippet 解决代码块重复敲写的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/08/iOS-抽象工厂模式/" rel="prev" title="iOS 抽象工厂模式">
+                iOS 抽象工厂模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -422,17 +429,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/icon.jpg"
@@ -476,22 +474,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加字段"><span class="nav-number">1.</span> <span class="nav-text">增加字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除字段"><span class="nav-number">2.</span> <span class="nav-text">删除字段</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
