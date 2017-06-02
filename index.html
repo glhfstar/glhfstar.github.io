@@ -848,7 +848,7 @@
 <p>另外，对于 log 输出更多地其实是用在程序开发和调试的过程中的，过多的输出有可能对运行的性能造成影响。在 Release 版本中关闭掉向控制台的输出也是软件开发中一种常见的做法。如果我们在开发中就注意使用了统一的 log 输出的话，这就变得非常简单了。使用条件编译的方法，我们可以添加条件，并设置合适的编译配置，使 printLog 的内容在 Release 时被去掉，从而成为一个空方法：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func RHPrint&lt;T&gt;(message: T,</div><div class="line">                    file: String = <span class="meta">#file,</span></div><div class="line">                  method: String = <span class="meta">#function,</span></div><div class="line">                    line: Int = <span class="meta">#line)</span></div><div class="line">&#123;</div><div class="line">    <span class="meta">#if DEBUG</span></div><div class="line">     print(<span class="string">"\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)"</span>)</div><div class="line">    <span class="meta">#endif</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p> 但这样写之后并不能使用的, 也就是不会执行打印, 还需要在项目配置中修改一下设置, 如下图：<br> <img src="https://raw.githubusercontent.com/glhfstar/glhfstar.github.io/hexo/source/images/RHPrint.png" alt="avatar"></p>
-<p> 第3步那里是展开, 第4步在 Debug 后面点击加号, 第5步在出现的方框里填入 -D DEBUG . -D 后面是一个标识, 用来区分是什么模式, 你也可以叫其他名字, . 这个标识是和上面自定义调试打印信息里的判断相对应的.</p>
+<p> 第3步那里是展开, 第4步在 Debug 后面点击加号, 第5步在出现的方框里填入 -D DEBUG . -D 后面是一个标识, 用来区分是什么模式, 你也可以叫其他名字,  这个标识是和上面自定义调试打印信息里的判断相对应的。</p>
 
           
         
