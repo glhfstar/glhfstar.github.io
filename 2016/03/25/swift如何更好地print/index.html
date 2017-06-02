@@ -87,17 +87,19 @@
 
 
 
-<meta name="description" content="生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。 我们们先来看个例子，假设你现">
+<meta name="description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其">
 <meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS建造者模式">
-<meta property="og:url" content="http://yoursite.com/2016/06/01/iOS建造者模式/index.html">
+<meta property="og:title" content="swift如何更好地print">
+<meta property="og:url" content="http://yoursite.com/2016/03/25/swift如何更好地print/index.html">
 <meta property="og:site_name" content="glhfstar 博客">
-<meta property="og:description" content="生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。 我们们先来看个例子，假设你现">
-<meta property="og:updated_time" content="2017-06-02T01:42:38.000Z">
+<meta property="og:description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其">
+<meta property="og:image" content="https://raw.githubusercontent.com/glhfstar/glhfstar.github.io/hexo/source/images/RHPrint.png">
+<meta property="og:updated_time" content="2017-06-02T08:41:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS建造者模式">
-<meta name="twitter:description" content="生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。 我们们先来看个例子，假设你现">
+<meta name="twitter:title" content="swift如何更好地print">
+<meta name="twitter:description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/glhfstar/glhfstar.github.io/hexo/source/images/RHPrint.png">
 
 
 
@@ -125,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/06/01/iOS建造者模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/03/25/swift如何更好地print/"/>
 
 
 
 
 
-  <title> iOS建造者模式 | glhfstar 博客 </title>
+  <title> swift如何更好地print | glhfstar 博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/01/iOS建造者模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/25/swift如何更好地print/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="glhfstar">
@@ -271,7 +273,7 @@
             
             
               
-                iOS建造者模式
+                swift如何更好地print
               
             
           </h1>
@@ -286,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-01T11:29:22+08:00">
-                2016-06-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-25T16:14:17+08:00">
+                2016-03-25
               </time>
             
 
@@ -322,18 +324,14 @@
       
 
       
-        <p>生成器模式（Builder）：将一个复杂对象的构建与它的表现分离，使得同样的构建过程可以创建不同的表现。<br>有时，构建某些对象有多种不同方式。如果这些逻辑包含在构建这些对象的类的单一方法中，代码将会充满条件判断。如果能把构建过程分解为客户-指导者-生成器(client-director-builder)的关系，那么过程将更容易管理与服用。针对此类关系的设计模式成为生成器。</p>
-<p>我们们先来看个例子，假设你现在要买一辆车，提出以下一堆要求：红色、10万左右、国产、5座等等，代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Car *car = [[Car alloc] init];</div><div class="line">car.color = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">car.price = <span class="number">100000</span>;</div><div class="line">car.family = <span class="string">@"China"</span>;</div><div class="line">car.seatCount = <span class="number">5</span>;</div></pre></td></tr></table></figure>
-<p>或者是这样：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Car *car = [Car alloc] initWithColor:[<span class="built_in">UIColor</span> whiteColor] price:<span class="number">100000</span> family:<span class="string">@"China"</span> seatCount:<span class="number">5</span> ....];</div></pre></td></tr></table></figure>
-<p>第一种方式可扩展性好些，但无法约束必须设置某些 property。第二种方式修正了这个问题，但扩展性也差了。<br>假如又有了新需求，要让客户可以选择汽车的驱动方式，。对于第一种，自然可以新增一个属性，但使用者很可能完全不知道新增了这么个属性。对于第二种，则只能再新建一个初始化方式，如 -[initWithColor: price:family:seatCount:actuate]。那如果又有新的需求，比如选择汽车的排量？或者可以选择车身结构等等。这两种方式都不能很好地处理需求的变更。</p>
-<p>所以，当某个类的属性值很多时，我们可以考虑使用建造者模式Builder Pattern来让初始化过程清晰一些。代码大概是这样的：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Car *car = [Car  createWithBuilder:^(CarBuilder *builder)&#123;</div><div class="line">	builder.color = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">	builder.price = <span class="number">100000</span>;</div><div class="line">	builder.family = <span class="string">@"China"</span>;</div><div class="line">	builder.seatCount = <span class="number">5</span>;</div><div class="line">&#125;];</div><div class="line"></div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)createWithBuilder:(BuilderBlock)block &#123;</div><div class="line">	<span class="built_in">NSParameterAssert</span>(block);</div><div class="line">	CarBuilder *builder = [[CarBuilder alloc] init];</div><div class="line">	block(builder);</div><div class="line">	<span class="keyword">return</span> [builder build];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>build的实现方式如下代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (Car *)build</div><div class="line">&#123;</div><div class="line">	<span class="comment">// 可以在这里对 property 做检查</span></div><div class="line">	<span class="built_in">NSAssert</span>(<span class="keyword">self</span>.price, <span class="string">@"请填写价格"</span>);</div><div class="line"></div><div class="line">	Car * car = [[Car alloc] init];</div><div class="line">	car.color = <span class="keyword">self</span>.color;</div><div class="line">	car.price = <span class="keyword">self</span>.price;</div><div class="line">	car.family = <span class="keyword">self</span>.family;</div><div class="line">	car.seatCount = <span class="keyword">self</span>.seatCount;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> car;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在FaceBook的开源动画框架POP中也有对builder pattern类似的应用：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POPAnimatableProperty *animatableProperty = [POPAnimatableProperty propertyWithName:<span class="string">@"property"</span> initializer:^(POPMutableAnimatableProperty *prop) &#123;</div><div class="line">    prop.writeBlock = ^(<span class="keyword">id</span> obj, <span class="keyword">const</span> <span class="built_in">CGFloat</span> values[]) &#123;</div><div class="line">    &#125;;</div><div class="line">    prop.readBlock = ^(<span class="keyword">id</span> obj, <span class="built_in">CGFloat</span> values[]) &#123;</div><div class="line">    &#125;;</div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
-<p>这里的 initializer 其实就是 builder。</p>
+        <p>打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。<br>在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其他文件都是可以访问到的.<br>普通的log可以输出我们关心的字符串或值。但当项目变得庞大复杂的时候，往往会有特别多的log从控制台输出，此时要找到我们关心的输出并不容易。所以为了更好的了解打印的详情，包括log 的所在文件，调用的行号以及所处的方法名字等等。可以在log的时候把这些信息当作参数进行传递并输出到控制体上。<br>例如对print进行类似这样的封装：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">func RHPrint&lt;T&gt;(message: T,</div><div class="line">                    file: String = <span class="meta">#file,</span></div><div class="line">                  method: String = <span class="meta">#function,</span></div><div class="line">                    line: Int = <span class="meta">#line)</span></div><div class="line">&#123;</div><div class="line">    print(<span class="string">"\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样，在进行 log 的时候我们只需要使用这个方法就能完成文件名，行号以及方法名的输出了。最棒的是，我们不再需要对这样的输出进行维护，无论在哪里它都能正确地输出各个参数：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Test.swift</span></div><div class="line">func method() &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    RHPrint(<span class="string">"这是一条输出"</span>)</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 输出：</span></div><div class="line"><span class="comment">// Test.swift[62], method(): 这是一条输出</span></div></pre></td></tr></table></figure>
+<p>另外，对于 log 输出更多地其实是用在程序开发和调试的过程中的，过多的输出有可能对运行的性能造成影响。在 Release 版本中关闭掉向控制台的输出也是软件开发中一种常见的做法。如果我们在开发中就注意使用了统一的 log 输出的话，这就变得非常简单了。使用条件编译的方法，我们可以添加条件，并设置合适的编译配置，使 printLog 的内容在 Release 时被去掉，从而成为一个空方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func RHPrint&lt;T&gt;(message: T,</div><div class="line">                    file: String = <span class="meta">#file,</span></div><div class="line">                  method: String = <span class="meta">#function,</span></div><div class="line">                    line: Int = <span class="meta">#line)</span></div><div class="line">&#123;</div><div class="line">    <span class="meta">#if DEBUG</span></div><div class="line">     print(<span class="string">"\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)"</span>)</div><div class="line">    <span class="meta">#endif</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 但这样写之后并不能使用的, 也就是不会执行打印, 还需要在项目配置中修改一下设置, 如下图：<br> <img src="https://raw.githubusercontent.com/glhfstar/glhfstar.github.io/hexo/source/images/RHPrint.png" alt="avatar"></p>
+<p> 第3步那里是展开, 第4步在 Debug 后面点击加号, 第5步在出现的方框里填入 -D DEBUG . -D 后面是一个标识, 用来区分是什么模式, 你也可以叫其他名字, . 这个标识是和上面自定义调试打印信息里的判断相对应的.</p>
 
       
     </div>
@@ -370,8 +368,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/31/dispatch-once死锁/" rel="next" title="dispatch_once死锁">
-                <i class="fa fa-chevron-left"></i> dispatch_once死锁
+              <a href="/2016/04/02/SQLite数据库升级处理/" rel="next" title="SQLite数据库升级处理">
+                <i class="fa fa-chevron-left"></i> SQLite数据库升级处理
               </a>
             
           </div>
@@ -380,8 +378,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/08/iOS-抽象工厂模式/" rel="prev" title="iOS 抽象工厂模式">
-                iOS 抽象工厂模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/20/利用xcode snippet 解决代码块重复敲写的问题/" rel="prev" title="利用xcode snippet 解决代码块重复敲写的问题">
+                利用xcode snippet 解决代码块重复敲写的问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
