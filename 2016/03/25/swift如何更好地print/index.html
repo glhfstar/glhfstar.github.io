@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其">
+<meta name="description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。  在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法,">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swift如何更好地print">
 <meta property="og:url" content="http://yoursite.com/2016/03/25/swift如何更好地print/index.html">
 <meta property="og:site_name" content="glhfstar 博客">
-<meta property="og:description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其">
+<meta property="og:description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。  在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法,">
 <meta property="og:image" content="https://raw.githubusercontent.com/glhfstar/glhfstar.github.io/hexo/source/images/RHPrint.png">
-<meta property="og:updated_time" content="2017-06-02T08:41:34.000Z">
+<meta property="og:updated_time" content="2017-06-02T08:44:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift如何更好地print">
-<meta name="twitter:description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其">
+<meta name="twitter:description" content="打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。  在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法,">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/glhfstar/glhfstar.github.io/hexo/source/images/RHPrint.png">
 
 
@@ -324,7 +324,10 @@
       
 
       
-        <p>打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。<br>在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其他文件都是可以访问到的.<br>普通的log可以输出我们关心的字符串或值。但当项目变得庞大复杂的时候，往往会有特别多的log从控制台输出，此时要找到我们关心的输出并不容易。所以为了更好的了解打印的详情，包括log 的所在文件，调用的行号以及所处的方法名字等等。可以在log的时候把这些信息当作参数进行传递并输出到控制体上。<br>例如对print进行类似这样的封装：</p>
+        <p>打印输出是程序开发中很重要的组成部分，它可以反映我们的程序是如何工作的，以及记录程序运行的过程中发生了什么。在 OC 中默认是使用NSLog 打印, Swift 中默认使用 print打印。 </p>
+<p>在OC 中的自定 Log, 一般是定义在.pch 的宏定义文件中, 但是 Swift 中已经没有宏定义文件了。 那么就不能自定义了吗? 其实不是的, 因为 Swift 只要在一个文件中声明了一个公开的方法, 其他文件都是可以访问到的.</p>
+<p>普通的log可以输出我们关心的字符串或值。但当项目变得庞大复杂的时候，往往会有特别多的log从控制台输出，此时要找到我们关心的输出并不容易。所以为了更好的了解打印的详情，包括log 的所在文件，调用的行号以及所处的方法名字等等。可以在log的时候把这些信息当作参数进行传递并输出到控制体上。</p>
+<p>例如对print进行类似这样的封装：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">func RHPrint&lt;T&gt;(message: T,</div><div class="line">                    file: String = <span class="meta">#file,</span></div><div class="line">                  method: String = <span class="meta">#function,</span></div><div class="line">                    line: Int = <span class="meta">#line)</span></div><div class="line">&#123;</div><div class="line">    print(<span class="string">"\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样，在进行 log 的时候我们只需要使用这个方法就能完成文件名，行号以及方法名的输出了。最棒的是，我们不再需要对这样的输出进行维护，无论在哪里它都能正确地输出各个参数：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Test.swift</span></div><div class="line">func method() &#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    RHPrint(<span class="string">"这是一条输出"</span>)</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 输出：</span></div><div class="line"><span class="comment">// Test.swift[62], method(): 这是一条输出</span></div></pre></td></tr></table></figure>
